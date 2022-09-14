@@ -5,7 +5,6 @@ CFLAGS = -Wall -Wextra -Werror
 
 LIBMLX = mlx_linux/libmlx_Linux.a
 OTHER_LIBS = -lX11 -lXext
-
 HEADER_DIR =  includes/
 SRCS_DIR = srcs/
 SRCS = $(shell find srcs/*.c)
@@ -20,6 +19,11 @@ GREEN =\033[0;32m
 YELLOW =\033[0;33m
 CYAN =\033[1;36m
 MAGNETA =\033[95m 
+
+#Run this rule first after every startup
+init :
+	export DISPLAY=172.23.240.1:0.0
+
 all : $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
