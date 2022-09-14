@@ -20,13 +20,16 @@ YELLOW =\033[0;33m
 CYAN =\033[1;36m
 MAGNETA =\033[95m 
 
+#IP address
+IPV4_ADDRESS = 172.23.240.1
+IPV4_ADDRESS_SUFFIXED = $(addsuffix :0.0, $(IPV4_ADDRESS))
+
+all : $(NAME)
 
 #Run this rule first after every startup.
 #Pass the IP address to child process.
 init :
-	export DISPLAY=172.23.240.1:0.0
-
-all : $(NAME)
+	export DISPLAY=$(IPV4_ADDRESS_SUFFIXED)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
@@ -45,4 +48,4 @@ fclean : clean
 	@rm -rf fdf
 	@echo "$(RED)Removed : fdf$(COLOR_OFF)"
 
-.PHONY : clean fclean all
+.PHONY : clean fclean all init
