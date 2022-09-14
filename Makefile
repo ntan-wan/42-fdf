@@ -20,11 +20,12 @@ YELLOW =\033[0;33m
 CYAN =\033[1;36m
 MAGNETA =\033[95m 
 
-#Run this rule first after every startup
+
+all : init $(NAME)
+
+#Pass the IP address to child process.
 init :
 	export DISPLAY=172.23.240.1:0.0
-
-all : $(NAME)
 
 $(OBJS_DIR)%.o : $(SRCS_DIR)%.c
 	@mkdir -p $(OBJS_DIR)
